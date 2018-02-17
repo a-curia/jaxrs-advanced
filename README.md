@@ -6,7 +6,7 @@ Advanced JAX-RS Jersey Webservices
     configuration requires you to run your application into an Application
     Server/Servlet Container?
 
--    
+-   MessageBody Readers/Writers \<-\> ParamConverter
 
  
 
