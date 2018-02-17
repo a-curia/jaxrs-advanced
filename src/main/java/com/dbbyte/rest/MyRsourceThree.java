@@ -24,7 +24,9 @@ public class MyRsourceThree {
 	
 	
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
+//	@Produces(MediaType.TEXT_PLAIN)
+	// custom media type for short date
+	@Produces("text/shortdate")
 	public Date testReturnDate() {
 		return Calendar.getInstance().getTime();
 	}
