@@ -28,6 +28,11 @@ import javax.ws.rs.core.MediaType;
  * 
  * Resource gets created way before request comes in
  */
+
+/*
+ * Jersey has ParamConverters which convert from your String pathParam to the fitted Data Type
+ * For your custom Data Type, you must create your own ParamConverter
+ */
 public class MyRsourceTwo {
 	
 	private int count; 
