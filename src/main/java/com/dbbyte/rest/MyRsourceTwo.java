@@ -21,6 +21,13 @@ import javax.ws.rs.core.MediaType;
 
 @Path("{pathParam}/test")
 //@Singleton // method variables will not work with this because we need to create new instance
+/**
+ * 
+ * Singleton resources are instantiated during application startup. 
+ * So, you cannot inject request-specific information to their member variables
+ * 
+ * Resource gets created way before request comes in
+ */
 public class MyRsourceTwo {
 	
 	private int count; 
