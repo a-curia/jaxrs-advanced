@@ -21,8 +21,9 @@
 			<version>${jersey.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- Glassfish is already having Jerseys libraries packaged for you, so you need add provided scope into your Maven pom.xml -->
-		
+		<!-- Glassfish is already having Jerseys libraries packaged for you, so 
+			you need add provided scope into your Maven pom.xml -->
+
 		<!-- this is to convert from Java instance -> JSON instance -->
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
@@ -31,17 +32,13 @@
 		</dependency>
 
 		<!-- testing dependencies -->
-		<!-- <dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency> -->
+		<!-- <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
+			<version>3.8.1</version> <scope>test</scope> </dependency> -->
 	</dependencies>
 
 	<build>
 		<finalName>jaxrs-advanced</finalName>
-		
+
 		<!-- change the Java version from default 1.5 to something new -->
 		<plugins>
 			<plugin>
@@ -54,7 +51,54 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-		</plugins>		
+		</plugins>
+
+		<!-- tell maven to replace placeholders during build -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 	</build>
+
+
+	<profiles>
+		<profile>
+			<id>profile-development</id>
+			<properties>
+				<environment>dev</environment>
+				<db.username>myDevUser</db.username>
+				<db.password>secretDevPasswd</db.password>
+				<db.url>jdbc:mysql://localhost/myDb</db.url>
+				<db.dialect>org.hibernate.dialect.MySQL5Dialect</db.dialect>
+				<db.driver>com.mysql.jdbc.Driver</db.driver>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>environment</name>
+					<value>dev</value>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>profile-production</id>
+			<properties>
+				<environment>prod</environment>
+				<db.username>myProdUser</db.username>
+				<db.password>secretProdPasswd</db.password>
+				<db.url>jdbc:mysql://production-database/myDb</db.url>
+				<db.dialect>org.hibernate.dialect.MySQL5Dialect</db.dialect>
+				<db.driver>com.mysql.jdbc.Driver</db.driver>
+			</properties>
+			<activation>
+				<property>
+					<name>environment</name>
+					<value>prod</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
 
 </project>

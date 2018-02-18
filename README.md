@@ -8,8 +8,8 @@ Advanced JAX-RS Jersey Webservices
 
 -   MessageBody Readers/Writers \<-\> ParamConverter
 
- 
+-   run mvn with specific profile using:
 
-|   |   |
-|---|---|
-|   |   |
+mvn clean compile package -Denvironment=prod help:active-profiles
+
+-   check the profile changes on target/WEB-INF myapplication.properties
