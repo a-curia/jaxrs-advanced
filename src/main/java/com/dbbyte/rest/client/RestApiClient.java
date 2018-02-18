@@ -2,6 +2,7 @@ package com.dbbyte.rest.client;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -49,6 +50,21 @@ public class RestApiClient {
 		Builder builder = target.request();
 		Response response = builder.get();
 		*/
+		
+		
+		// Making a POST request
+		Message postMessage = new Message(5,"aaaa","Adrian Curia");
+		Response postResponse = messagesTarget.request().post(Entity.json(postMessage)); // this Entity.json(postMessage) converts Java instance  to JSON or XML...
+		
+		if (postResponse.getStatus() != 201) {
+			System.out.println("Error");
+		}
+		Message createdMessage = postResponse.readEntity(Message.class);// unwrap the object and get the entity out of it; you don't have the respons estatus anymore
+		
+		System.out.println("Post Response = "+createdMessage.getMessage());
+		
+		// Making PUT/PATCH is the same
+		
 	}
 
 }
